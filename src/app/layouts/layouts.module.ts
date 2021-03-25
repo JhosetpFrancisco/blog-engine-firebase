@@ -9,6 +9,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 
+import { SharedModule } from 'src/app/shared/shared.module';
+
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -17,6 +19,6 @@ import { VerifyEmailComponent } from './verify-email/verify-email.component';
     ForgotPasswordComponent,
     VerifyEmailComponent,
   ],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, SharedModule],
 })
 export class LayoutsModule {}
