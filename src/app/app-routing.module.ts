@@ -8,6 +8,9 @@ import { InicioComponent } from 'src/app/layouts/dashboard/views/inicio/inicio.c
 import { BlogComponent } from 'src/app/layouts/dashboard/views/blog/blog.component';
 import { StorageComponent } from 'src/app/layouts/dashboard/views/storage/storage.component';
 
+import { PostsListComponent } from 'src/app/shared/components/posts-list/posts-list.component';
+import { PostBlogComponent } from 'src/app/shared/components/post-blog/post-blog.component';
+
 import { AuthGuard } from 'src/app/shared/guard/auth.guard';
 
 const routes: Routes = [
@@ -25,6 +28,16 @@ const routes: Routes = [
       {
         path: 'blog',
         component: BlogComponent,
+        children: [
+          {
+            path: '',
+            component: PostsListComponent,
+          },
+          {
+            path: 'create',
+            component: PostBlogComponent,
+          },
+        ],
       },
       {
         path: 'storage',

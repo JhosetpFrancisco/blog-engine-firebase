@@ -15,8 +15,9 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment as env } from '../environments/environment';
 
-// Auth service
+// Services
 import { AuthService } from './shared/services/auth.service';
+import { PostBlogService } from './shared/services/post-blog.service';
 
 /** WYSIWYG Quill */
 import { QuillModule } from "ngx-quill";
@@ -35,7 +36,7 @@ import { QuillModule } from "ngx-quill";
     /** WYSIWYG Quill */
     QuillModule.forRoot(),
   ],
-  providers: [AuthService],
+  providers: [AuthService, PostBlogService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

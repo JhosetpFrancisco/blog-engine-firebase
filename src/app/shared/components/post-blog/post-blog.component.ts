@@ -5,6 +5,9 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
+import { v4 as uuidv4 } from 'uuid';
+import { PostBlogService } from 'src/app/shared/services/post-blog.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'comp-post-blog',
@@ -14,14 +17,18 @@ import {
 export class PostBlogComponent implements OnInit {
   richTextForm: FormGroup;
 
-  constructor(private _fb: FormBuilder) {}
+  constructor(
+    private _fb: FormBuilder,
+    private postBlogService: PostBlogService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.richTextForm = this._fb.group({
+      uid: [uuidv4()],
       title: ['', Validators.required],
-      description: [
-        `Escriba su post aquí`,
-      ],
+      description: [`Escriba su post aquí`],
     });
   }
 
@@ -31,5 +38,7 @@ export class PostBlogComponent implements OnInit {
 
   onSubmit() {
     console.warn(this.richTextForm.value);
+    this.postBlogService.postBlog(this.richTextForm.value);
+    this.router.navigate(['/dashboard/blog']);
   }
 }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { BrowserModule } from "@angular/platform-browser";
 import { ReactiveFormsModule } from "@angular/forms";
 
@@ -41,11 +42,13 @@ import { TextEditorModule } from 'src/app/shared/components/post-blog/text-edito
 
 /* Components */
 import { PostBlogComponent } from './components/post-blog/post-blog.component';
+import { PostsListComponent } from './components/posts-list/posts-list.component';
 
 @NgModule({
-  declarations: [PostBlogComponent],
+  declarations: [PostBlogComponent, PostsListComponent],
   imports: [
     CommonModule,
+    RouterModule,
     BrowserModule,
     ReactiveFormsModule,
     /* Material Angular */
@@ -116,6 +119,7 @@ import { PostBlogComponent } from './components/post-blog/post-blog.component';
     FlexLayoutModule,
     /* Components */
     PostBlogComponent,
+    PostsListComponent,
   ]
 })
 export class SharedModule { }

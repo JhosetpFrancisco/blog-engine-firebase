@@ -1,4 +1,9 @@
-<h1>Crear un nuevo Post</h1>
+<div class="content">
+  <button mat-icon-button routerLink="/dashboard/blog">
+    <mat-icon>keyboard_backspace</mat-icon>
+  </button>
+  <h1>Crear un nuevo Post</h1>
+</div>
 <form [formGroup]="richTextForm" (ngSubmit)="onSubmit()">
   <mat-form-field appearance="outline">
     <mat-label>Título</mat-label>
