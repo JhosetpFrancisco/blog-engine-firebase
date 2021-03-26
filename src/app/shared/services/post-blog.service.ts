@@ -16,7 +16,9 @@ export class PostBlogService {
   private postCollection: AngularFirestoreCollection<any>;
 
   constructor(private db: AngularFirestore) {
-    this.postCollection = db.collection('blog', ref => ref.orderBy('_ts', 'desc'));
+    this.postCollection = db.collection('blog', (ref) =>
+      ref.orderBy('_ts', 'desc')
+    );
     this.post = this.postCollection.valueChanges();
   }
 
@@ -33,6 +35,25 @@ export class PostBlogService {
     };
     return postRef.set(poastData, {
       merge: true,
+    });
+  }
+
+  getPostbyUid(uid): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.db
+        .collection('blog')
+        .doc(uid)
+        .ref.get()
+        .then(function (doc) {
+          if (doc.exists) {
+            resolve(doc.data());
+          } else {
+            reject('No existe el documento!');
+          }
+        })
+        .catch(function (error) {
+          reject('Ha ocurrido un error!');
+        });
     });
   }
 }

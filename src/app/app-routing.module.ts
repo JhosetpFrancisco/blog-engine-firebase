@@ -10,6 +10,7 @@ import { StorageComponent } from 'src/app/layouts/dashboard/views/storage/storag
 
 import { PostsListComponent } from 'src/app/shared/components/posts-list/posts-list.component';
 import { PostBlogComponent } from 'src/app/shared/components/post-blog/post-blog.component';
+import { PostViewerComponent } from 'src/app/shared/components/post-viewer/post-viewer.component';
 
 import { AuthGuard } from 'src/app/shared/guard/auth.guard';
 
@@ -35,6 +36,14 @@ const routes: Routes = [
           },
           {
             path: 'create',
+            component: PostBlogComponent,
+          },
+          {
+            path: ':uid',
+            component: PostViewerComponent,
+          },
+          {
+            path: ':uid/edit',
             component: PostBlogComponent,
           },
         ],

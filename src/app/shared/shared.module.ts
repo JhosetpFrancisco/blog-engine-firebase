@@ -43,9 +43,10 @@ import { TextEditorModule } from 'src/app/shared/components/post-blog/text-edito
 /* Components */
 import { PostBlogComponent } from './components/post-blog/post-blog.component';
 import { PostsListComponent } from './components/posts-list/posts-list.component';
+import { PostViewerComponent } from './components/post-viewer/post-viewer.component';
 
 @NgModule({
-  declarations: [PostBlogComponent, PostsListComponent],
+  declarations: [PostBlogComponent, PostsListComponent, PostViewerComponent],
   imports: [
     CommonModule,
     RouterModule,

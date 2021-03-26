@@ -1,0 +1,16 @@
+<div class="content">
+  <button mat-icon-button routerLink="/dashboard/blog">
+    <mat-icon>keyboard_backspace</mat-icon>
+  </button>
+  <mat-icon>visibility</mat-icon>
+</div>
+
+<div *ngIf="post$ as post; else loading">
+  <span class="time">{{
+    post._ts.seconds * 1000 | date: "EEEE, MMMM d, y, h:mm"
+  }}</span><br><br>
+  <div [innerHtml]="post.description"></div>
+</div>
+<ng-template #loading>
+  <mat-spinner></mat-spinner>
+</ng-template>

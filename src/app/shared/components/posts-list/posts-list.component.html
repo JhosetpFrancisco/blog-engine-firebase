@@ -16,14 +16,26 @@
       >
         <mat-card class="mat-elevation-z4">
           <mat-card-content>
-            <h2 style="margin-bottom: 0;">{{ post.title }}</h2>
-            <span class="time">{{ post._ts.seconds * 1000 | date:'EEEE, MMMM d, y, h:mm' }}</span>
-            <br><br>
+            <h2 style="margin-bottom: 0">{{ post.title }}</h2>
+            <span class="time">{{
+              post._ts.seconds * 1000 | date: "EEEE, MMMM d, y, h:mm"
+            }}</span>
+            <br /><br />
             <p>The Himalayas is a mountain range in Asia.</p>
           </mat-card-content>
           <mat-card-actions>
-            <button mat-icon-button><mat-icon>visibility</mat-icon></button>
-            <button mat-icon-button><mat-icon>create</mat-icon></button>
+            <button
+              mat-icon-button
+              [routerLink]="['/dashboard/blog', post.uid]"
+            >
+              <mat-icon>visibility</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              [routerLink]="['/dashboard/blog', post.uid, 'edit']"
+            >
+              <mat-icon>create</mat-icon>
+            </button>
           </mat-card-actions>
         </mat-card>
       </div>
