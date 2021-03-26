@@ -17,6 +17,8 @@
         <mat-card class="mat-elevation-z4">
           <mat-card-content>
             <h2 style="margin-bottom: 0">{{ post.title }}</h2>
+            <span *ngIf="!post.edit" class="time" style="font-weight: bold;"> Created: </span>
+            <span *ngIf="post.edit" class="time" style="font-weight: bold;"> Edited: </span>
             <span class="time">{{
               post._ts.seconds * 1000 | date: "EEEE, MMMM d, y, h:mm"
             }}</span>

@@ -6,9 +6,18 @@
 </div>
 
 <div *ngIf="post$ as post; else loading">
+  <h1 style="color: #8c8c8c;">Título: {{ post.title }}</h1>
+  <span *ngIf="!post.edit" class="time" style="font-weight: bold">
+    Created:
+  </span>
+  <span *ngIf="post.edit" class="time" style="font-weight: bold">
+    Edited:
+  </span>
   <span class="time">{{
     post._ts.seconds * 1000 | date: "EEEE, MMMM d, y, h:mm"
-  }}</span><br><br>
+  }}</span
+  >
+  <hr class="dotted">
   <div [innerHtml]="post.description"></div>
 </div>
 <ng-template #loading>
