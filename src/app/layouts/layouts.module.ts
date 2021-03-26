@@ -10,6 +10,9 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 
 import { SharedModule } from 'src/app/shared/shared.module';
+import { InicioComponent } from './dashboard/views/inicio/inicio.component';
+import { BlogComponent } from './dashboard/views/blog/blog.component';
+import { StorageComponent } from './dashboard/views/storage/storage.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,14 @@ import { SharedModule } from 'src/app/shared/shared.module';
     SignUpComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
+    InicioComponent,
+    BlogComponent,
+    StorageComponent,
   ],
-  imports: [CommonModule, RouterModule, SharedModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    SharedModule,
+  ],
 })
 export class LayoutsModule {}

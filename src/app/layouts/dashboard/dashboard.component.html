@@ -1,14 +1,9 @@
 <mat-toolbar *ngIf="authService.userData as user">
-  <button mat-icon-button>
-    <img
-      width="34"
-      class="brand-logo"
-      src="assets/svg/blogging.svg"
-      alt="Akiba Logo"
-    />
+  <button mat-icon-button aria-label="Menu" (click)="drawer.toggle()">
+    <mat-icon>menu</mat-icon>
   </button>
   <span style="width: 10px"></span>
-  <span>Blog Engine Firebase</span>
+  <span>Blog Engine</span>
   <span class="example-spacer"></span>
   <button
     mat-icon-button
@@ -22,28 +17,32 @@
       style="border-radius: 18px; cursor: pointer"
     />
   </button>
-  <button mat-icon-button aria-label="Menu" (click)="drawer.toggle()">
-    <mat-icon>menu</mat-icon>
-  </button>
 </mat-toolbar>
 
 <mat-drawer-container class="container" autosize>
   <mat-drawer #drawer class="sidenav" mode="side">
     <mat-nav-list>
-      <a mat-list-item>
-        <span mat-line>Dashboard</span>
+      <a mat-list-item routerLink="/dashboard/inicio" (click)="drawer.toggle()">
+        <mat-icon mat-list-icon>home</mat-icon>
+        <span mat-line>Inicio</span>
       </a>
-      <a mat-list-item>
+      <a mat-list-item routerLink="/dashboard/blog" (click)="drawer.toggle()">
+        <mat-icon mat-list-icon>article</mat-icon>
         <span mat-line>Blog</span>
       </a>
-      <a mat-list-item (click)="authService.SignOut()">
+      <a mat-list-item routerLink="/dashboard/storage" (click)="drawer.toggle()">
+        <mat-icon mat-list-icon>folder</mat-icon>
+        <span mat-line>Archivos</span>
+      </a>
+      <a mat-list-item (click)="authService.SignOut()" (click)="drawer.toggle()">
+        <mat-icon mat-list-icon>logout</mat-icon>
         <span mat-line>Salir</span>
       </a>
     </mat-nav-list>
   </mat-drawer>
 
   <div id="dashboard-content">
-    Bienvenido
+    <router-outlet></router-outlet>
   </div>
 </mat-drawer-container>
 

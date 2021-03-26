@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { LayoutsModule } from 'src/app/layouts/layouts.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { TextEditorModule } from 'src/app/shared/components/post-blog/text-editor/text-editor.module';
 
 // Firebase services + enviorment module
 import { AngularFireModule } from '@angular/fire';
@@ -17,6 +18,8 @@ import { environment as env } from '../environments/environment';
 // Auth service
 import { AuthService } from './shared/services/auth.service';
 
+/** WYSIWYG Quill */
+import { QuillModule } from "ngx-quill";
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -25,9 +28,12 @@ import { AuthService } from './shared/services/auth.service';
     BrowserAnimationsModule,
     LayoutsModule,
     SharedModule,
+    TextEditorModule,
     AngularFireModule.initializeApp(env.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    /** WYSIWYG Quill */
+    QuillModule.forRoot(),
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
