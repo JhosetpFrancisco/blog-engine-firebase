@@ -26,11 +26,27 @@ export class PostBlogService {
     const postRef: AngularFirestoreDocument<any> = this.db.doc(
       `blog/${post.uid}`
     );
-    console.log(new Date());
     const poastData: Post = {
       uid: post.uid,
       title: post.title,
       description: post.description,
+      edit: false,
+      _ts: firebase.firestore.Timestamp.fromDate(new Date()),
+    };
+    return postRef.set(poastData, {
+      merge: true,
+    });
+  }
+
+  updatePost(post) {
+    const postRef: AngularFirestoreDocument<any> = this.db.doc(
+      `blog/${post.uid}`
+    );
+    const poastData: Post = {
+      uid: post.uid,
+      title: post.title,
+      description: post.description,
+      edit: true,
       _ts: firebase.firestore.Timestamp.fromDate(new Date()),
     };
     return postRef.set(poastData, {

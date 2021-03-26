@@ -2,32 +2,38 @@
   <button mat-icon-button routerLink="/dashboard/blog">
     <mat-icon>keyboard_backspace</mat-icon>
   </button>
-  <h1>Crear un nuevo Post</h1>
+  <h1 *ngIf="!isEdit">Crear un nuevo Post</h1>
+  <h1 *ngIf="isEdit">Editar publicación</h1>
 </div>
-<form [formGroup]="richTextForm" (ngSubmit)="onSubmit()">
-  <mat-form-field appearance="outline">
-    <mat-label>Título</mat-label>
-    <input
-      matInput
-      formControlName="title"
-      class="form-control"
-      id="Title"
-      aria-describedby="Title"
-      placeholder="Título del Post"
-    />
-    <mat-icon matSuffix>title</mat-icon>
-  </mat-form-field>
-  <div class="form-group">
-    <p>Contenido</p>
-    <text-editor [control]="descriptionRichControl"></text-editor>
-  </div>
-  <br>
-  <button
-    mat-raised-button
-    color="primary"
-    type="submit"
-    [disabled]="!richTextForm.valid"
-  >
-    Postear
-  </button>
-</form>
+<div *ngIf="post$; else loading">
+  <form [formGroup]="richTextForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline">
+      <mat-label>Título</mat-label>
+      <input
+        matInput
+        formControlName="title"
+        class="form-control"
+        id="Title"
+        aria-describedby="Title"
+        placeholder="Título del Post"
+      />
+      <mat-icon matSuffix>title</mat-icon>
+    </mat-form-field>
+    <div class="form-group">
+      <p>Contenido</p>
+      <text-editor [control]="descriptionRichControl"></text-editor>
+    </div>
+    <br />
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="!richTextForm.valid"
+    >
+      ENVIAR
+    </button>
+  </form>
+</div>
+<ng-template #loading>
+  <mat-spinner></mat-spinner>
+</ng-template>

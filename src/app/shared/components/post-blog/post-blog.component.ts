@@ -8,6 +8,7 @@ import {
 import { v4 as uuidv4 } from 'uuid';
 import { PostBlogService } from 'src/app/shared/services/post-blog.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Post } from '../../services/post';
 
 @Component({
   selector: 'comp-post-blog',
@@ -15,20 +16,39 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./post-blog.component.scss'],
 })
 export class PostBlogComponent implements OnInit {
-  richTextForm: FormGroup;
+  public richTextForm: FormGroup;
+  public post$: Post;
+  public isEdit: boolean = false;
 
   constructor(
     private _fb: FormBuilder,
     private postBlogService: PostBlogService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) {
+    this.route.params.subscribe((params) => {
+      if (params['uid']) {
+        this.isEdit = true;
+        this.postBlogService
+          .getPostbyUid(params['uid'])
+          .then((post) => {
+            this.post$ = post;
+            this.setFormGroup();
+          })
+          .catch((err) => console.log(err));
+      }
+    });
+  }
 
   ngOnInit(): void {
+    if (!this.isEdit) this.setFormGroup();
+  }
+
+  setFormGroup() {
     this.richTextForm = this._fb.group({
-      uid: [uuidv4()],
-      title: ['', Validators.required],
-      description: [`Escriba su post aquí`],
+      uid: [this.post$?.uid || uuidv4()],
+      title: [this.post$?.title || '', Validators.required],
+      description: [this.post$?.description || `Escriba su post aquí`],
     });
   }
 
@@ -37,8 +57,8 @@ export class PostBlogComponent implements OnInit {
   }
 
   onSubmit() {
-    console.warn(this.richTextForm.value);
-    this.postBlogService.postBlog(this.richTextForm.value);
+    if (!this.isEdit) this.postBlogService.postBlog(this.richTextForm.value);
+    else this.postBlogService.updatePost(this.richTextForm.value);
     this.router.navigate(['/dashboard/blog']);
   }
 }
