@@ -5,9 +5,9 @@
   <h1 *ngIf="!isEdit">Crear un nuevo Post</h1>
   <h1 *ngIf="isEdit">Editar publicación</h1>
 </div>
-<div *ngIf="post$; else loading">
+<div *ngIf="post$ || !isEdit; else loading">
   <form [formGroup]="richTextForm" (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" style="width: 100%;">
       <mat-label>Título</mat-label>
       <input
         matInput

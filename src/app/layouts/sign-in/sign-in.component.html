@@ -1,32 +1,28 @@
 <section class="login">
   <mat-card>
     <h3>Iniciar Sesión</h3>
-    <mat-form-field appearance="outline">
-      <mat-label>Correo</mat-label>
-      <input
-        matInput
-        type="text"
-        #userName
-        required
-        placeholder="example@hotmail.com"
-      />
-      <mat-icon matSuffix>account_circle</mat-icon>
-    </mat-form-field>
-    <br />
-    <mat-form-field appearance="outline">
-      <mat-label>Contraseña</mat-label>
-      <input matInput type="password" #userPassword required />
-      <mat-icon matSuffix>lock</mat-icon>
-    </mat-form-field>
-    <br />
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="authService.SignIn(userName.value, userPassword.value)"
-    >
-      Ingresar
-    </button>
-    <br><br>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline">
+        <mat-label>Correo</mat-label>
+        <input
+          matInput
+          type="text"
+          [formControlName]="'username'"
+          placeholder="example@hotmail.com"
+        />
+        <mat-icon matSuffix>account_circle</mat-icon>
+      </mat-form-field>
+      <br />
+      <mat-form-field appearance="outline">
+        <mat-label>Contraseña</mat-label>
+        <input matInput type="password" [formControlName]="'password'" />
+        <mat-icon matSuffix>lock</mat-icon>
+      </mat-form-field>
+      <br />
+      <button type="submit" mat-raised-button color="primary">Ingresar</button>
+    </form>
+    <!--
     <p>No tienes cuenta? <span><a routerLink="/register-user">Registrate</a></span></p>
+    -->
   </mat-card>
 </section>

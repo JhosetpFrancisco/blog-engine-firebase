@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from "@angular/forms";
 import { QuillConfiguration } from "./quill-configuration";
+import Quill from 'quill';
+import { ImageResize } from "quill-image-resize";
 
 @Component({
   selector: 'text-editor',
@@ -14,6 +16,7 @@ export class TextEditorComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
+    console.log(Quill);
     this.control = this.control ?? new FormControl();
   }
 

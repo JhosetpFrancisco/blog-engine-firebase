@@ -7,6 +7,7 @@ import { DashboardComponent } from 'src/app/layouts/dashboard/dashboard.componen
 import { InicioComponent } from 'src/app/layouts/dashboard/views/inicio/inicio.component';
 import { BlogComponent } from 'src/app/layouts/dashboard/views/blog/blog.component';
 import { StorageComponent } from 'src/app/layouts/dashboard/views/storage/storage.component';
+import { CategoryComponent } from 'src/app/layouts/dashboard/views/category/category.component';
 
 import { PostsListComponent } from 'src/app/shared/components/posts-list/posts-list.component';
 import { PostBlogComponent } from 'src/app/shared/components/post-blog/post-blog.component';
@@ -17,7 +18,7 @@ import { AuthGuard } from 'src/app/shared/guard/auth.guard';
 const routes: Routes = [
   { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
   { path: 'sign-in', component: SignInComponent },
-  { path: 'register-user', component: SignUpComponent },
+  /* { path: 'register-user', component: SignUpComponent }, */
   {
     path: 'dashboard',
     component: DashboardComponent,
@@ -47,6 +48,10 @@ const routes: Routes = [
             component: PostBlogComponent,
           },
         ],
+      },
+      {
+        path: 'category',
+        component: CategoryComponent,
       },
       {
         path: 'storage',

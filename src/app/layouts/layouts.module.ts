@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SignInComponent } from './sign-in/sign-in.component';
@@ -13,6 +14,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { InicioComponent } from './dashboard/views/inicio/inicio.component';
 import { BlogComponent } from './dashboard/views/blog/blog.component';
 import { StorageComponent } from './dashboard/views/storage/storage.component';
+import { CategoryComponent } from './dashboard/views/category/category.component';
 
 @NgModule({
   declarations: [
@@ -24,10 +26,13 @@ import { StorageComponent } from './dashboard/views/storage/storage.component';
     InicioComponent,
     BlogComponent,
     StorageComponent,
+    CategoryComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
     SharedModule,
   ],
 })
